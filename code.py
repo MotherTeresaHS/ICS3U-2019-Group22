@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
-# Created by: ????
-# Created on: ???? 2019
-# This file is the "????" game
+# Created by: Douglass Jeffrey
+# Created on: Dec 2019
+# This file is the "Egg Collector" game
 #   for CircuitPython
 
 import ugame
