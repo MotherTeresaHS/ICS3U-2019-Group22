@@ -8,7 +8,6 @@
 import ugame
 import stage
 import board
-import neopixel
 import time
 import random
 
@@ -16,13 +15,10 @@ import constants
 
 
 def blank_white_reset_scene():
+    # THIS IS COMPLETE
     # this function is the splash scene game loop
 
     # do house keeping to ensure everythng is setup
-
-    # set up the NeoPixels
-    pixels = neopixel.NeoPixel(board.NEOPIXEL, 5, auto_write=False)
-    pixels.deinit() # and turn them all off
 
     # reset sound to be off
     sound = ugame.audio
@@ -57,6 +53,7 @@ def blank_white_reset_scene():
         # redraw sprite list
 
 def mt_splash_scene():
+    # THIS IS COMPLETE
     # this function is the MT splash scene
 
     # an image bank for CircuitPython
@@ -137,7 +134,43 @@ def mt_splash_scene():
         # redraw sprite list
 
 def game_splash_scene():
-    # this function is the game scene
+    # NOT DONE
+    # WORKING ON GETTING TEXT AND BACKGROUND TO SHOW UP
+
+    # this function is the game splash scene
+
+    # an image bank for CircuitPython
+    image_bank_1 = stage.Bank.from_bmp16("eggcollector_imagebank.bmp")
+
+    # sets the background to image 0 in the bank
+    background = stage.Grid(image_bank_1, constants.SCREEN_GRID_X, constants.SCREEN_GRID_Y)
+    for x_location in range(constants.SCREEN_GRID_X):
+        for y_location in range(constants.SCREEN_GRID_Y):
+            tile_picked = 2
+            background.tile(x_location, y_location, tile_picked)
+
+
+    # displays text onscreen
+    text = []
+
+    text1 = stage.Text(width=40, height=20, font=None, palette=constants.MT_GAME_STUDIO_PALETTE, buffer=None)
+    text1.move(35, 10)
+    text1.text("Produced By")
+    text.append(text1)
+
+    text2 = stage.Text(width=29, height=14, font=None, palette=constants.MT_GAME_STUDIO_PALETTE, buffer=None)
+    text2.move(19, 110)
+    text2.text("Douglass Jeffrey")
+    text.append(text2)
+
+    # create a stage for the background to show up on
+    #   and set the frame rate to 60fps
+    game = stage.Stage(ugame.display, 60)
+    # set the layers, items show up in order
+    game.layers = text + [background]
+    # render the background and inital location of sprite list
+    # most likely you will only render background once per scene
+    game.render_block()
 
     # repeat forever, game loop
     while True:
@@ -145,9 +178,11 @@ def game_splash_scene():
 
         # update game logic
 
-        # redraw sprite list
-        pass # just a placeholder until you write the code
+        # Wait for 1 seconds
+        time.sleep(1.0)
+        main_menu_scene()
 
+        # redraw sprite list
 
 def main_menu_scene():
     # this function is the game scene

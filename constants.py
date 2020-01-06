@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
-# Created by: Mr. Coxall
-# Created on: October 2019
-# This constants file is CircuitPython Stage game
+# Created by: Douglass Jeffrey
+# Created on: January 2020
+# This is the constants file for the egg collector game
 
 # CircuitPython screen size is 160x128 and sprites are 16x16
 SCREEN_X = 160
