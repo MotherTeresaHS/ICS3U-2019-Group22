@@ -57,10 +57,10 @@ def mt_splash_scene():
     # this function is the MT splash scene
 
     # an image bank for CircuitPython
-    image_bank_2 = stage.Bank.from_bmp16("mt_game_studio.bmp")
+    image_bank_1 = stage.Bank.from_bmp16("mt_game_studio.bmp")
 
     # sets the background to image 0 in the bank
-    background = stage.Grid(image_bank_2, constants.SCREEN_GRID_X, constants.SCREEN_GRID_Y)
+    background = stage.Grid(image_bank_1, constants.SCREEN_GRID_X, constants.SCREEN_GRID_Y)
 
     # used this program to split the iamge into tile: https://ezgif.com/sprite-cutter/ezgif-5-818cdbcc3f66.png
     background.tile(2, 2, 0)  # blank white
@@ -134,21 +134,13 @@ def mt_splash_scene():
         # redraw sprite list
 
 def game_splash_scene():
-    # NOT DONE
-    # WORKING ON GETTING TEXT AND BACKGROUND TO SHOW UP
-
+    # Done dont touch
     # this function is the game splash scene
 
     # an image bank for CircuitPython
-    image_bank_1 = stage.Bank.from_bmp16("eggcollector_imagebank.bmp")
+    image_bank_2 = stage.Bank.from_bmp16("egg_collector_image_bank_test.bmp")
 
-    # sets the background to image 0 in the bank
-    background = stage.Grid(image_bank_1, constants.SCREEN_GRID_X, constants.SCREEN_GRID_Y)
-    for x_location in range(constants.SCREEN_GRID_X):
-        for y_location in range(constants.SCREEN_GRID_Y):
-            tile_picked = 2
-            background.tile(x_location, y_location, tile_picked)
-
+    background = stage.Grid(image_bank_2, constants.SCREEN_GRID_X, constants.SCREEN_GRID_Y)
 
     # displays text onscreen
     text = []
@@ -184,18 +176,69 @@ def game_splash_scene():
 
         # redraw sprite list
 
+
 def main_menu_scene():
     # this function is the game scene
+
+    image_bank_2 = stage.Bank.from_bmp16("egg_collector_image_bank_test.bmp")
+
+    # sets the background to image 0 in the bank
+    background = stage.Grid(image_bank_2, constants.SCREEN_GRID_X, constants.SCREEN_GRID_Y)
+
+    # displays text onscreen
+    text = []
+
+    text1 = stage.Text(width=40, height=20, font=None, palette=constants.MT_GAME_STUDIO_PALETTE, buffer=None)
+    text1.move(35, 10)
+    text1.text("EGG COLLECTOR")
+    text.append(text1)
+
+    text2 = stage.Text(width=29, height=40, font=None, palette=constants.MT_GAME_STUDIO_PALETTE, buffer=None)
+    text2.move(1, 100)
+    text2.text("PRESS START TO BEGIN")
+    text.append(text2)
+    
+    sprites = []
+    # create a sprite
+    # parameters (image bank, image # in bank, x, y)
+    chicken = stage.Sprite(image_bank_2, 1, 12, 8 )
+    sprites.insert(0, chicken)  # insert at top of sprite list
+
+    eggs = []
+    for egg_number in range(constants.TOTAL_NUMBER_OF_EGGS):
+        a_single_egg = stage.Sprite(image_bank_2, 3 , constants.OFF_SCREEN_X, constants.OFF_SCREEN_X)
+        eggs.append(a_single_egg)
+
+
+    # create a stage for the background to show up on
+    #   and set the frame rate to 60fps
+    game = stage.Stage(ugame.display, 60)
+    # set the background layer
+    game.layers = sprites + eggs + text + [background]
+    # render the background
+    game.render_block()
 
     # repeat forever, game loop
     while True:
         # get user input
-
         # update game logic
+        keys = ugame.buttons.get_pressed()
+        #print(keys)
+
+        if keys & ugame.K_START != 0:  # Start button
+            game_scene()
+            #break
+            
+        for egg_number in range(len(eggs)):
+            if eggs[egg_number].x > 0: # meaning it is on the screen
+                eggs[egg_number].move(eggs[egg_number].x, eggs[egg_number].y + constants.EGG_SPEED)
+                if eggs[egg_number].y > constants.SCREEN_Y:
+                    eggs[egg_number].move(constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
+                    show_egg() # make it randomly show up at top again
 
         # redraw sprite list
-        pass # just a placeholder until you write the code
-
+        game.render_sprites(sprites)
+        game.tick()
 
 def game_scene():
     # this function is the game scene
@@ -208,6 +251,7 @@ def game_scene():
 
         # redraw sprite list
         pass # just a placeholder until you write the code
+        print("game_scene()")
 
 
 def game_over_scene(final_score):
