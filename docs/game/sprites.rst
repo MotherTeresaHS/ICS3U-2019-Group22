@@ -1,0 +1,6 @@
+.. _sprites:
+
+Sprites
+==========
+
+X
