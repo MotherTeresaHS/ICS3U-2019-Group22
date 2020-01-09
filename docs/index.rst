@@ -9,9 +9,9 @@ Home
     </iframe>
   </div>
 
-In this project we will be making an old school style video game for the `Adafruit PyBadge <https://www.adafruit.com/product/4200>`_. We will be using `CircuitPython <https://circuitpython.org>`_ and the `stage library <https://learn.adafruit.com/circuitpython-stage-game-library>`_ to create a `Space Invaders <https://en.wikipedia.org/wiki/Space_Invaders>`_ like game. The stage library makes it easy to make classic video games, with helper libraries for sound, sprites and collision detection. The game will also work on other variants of PyBadge hardware, like the `PyGamer <https://www.adafruit.com/product/4242>`_ and the `EdgeBadge <https://www.adafruit.com/product/4400>`_. The full completed game code with all the assets can be found `here <https://github.com/MotherTeresaHS/ICS3U-2019-Group0>`_.
+In this project I made an old school style video game for the `Adafruit PyBadge <https://www.adafruit.com/product/4200>`_. To recreate it you will need to use an `CircuitPython <https://circuitpython.org>`_ and the `stage library <https://learn.adafruit.com/circuitpython-stage-game-library>`_ to create the game which I called Egg Collector. The game will also work on other variants of PyBadge hardware, like the `PyGamer <https://www.adafruit.com/product/4242>`_ and the `EdgeBadge <https://www.adafruit.com/product/4400>`_. The full completed game code with all the assets can be found `here <https://github.com/MotherTeresaHS/ICS3U-2019-Group22>`_.
 
-The guide assumes that you have prior coding experience, hopefully in Python. It is designed to use just introductory concepts. No Object Oriented Programming (OOP) are used so that students in particular that have completed their first course in coding and know just variables, if statements, loops and functions will be able to follow along.
+The guide assumes that you have prior coding experience, hopefully in Python. It is designed to use just introductory concepts. No Object Oriented Programming (OOP) are used so that anyone with a basic grade 11 knowledge of python programming can recreate it.
 
 **Parts**
 
@@ -129,7 +129,7 @@ You might also want:
 
     `3D Printed Case <https://www.tinkercad.com/things/fHOWOY88j9A?utm_source=externalsite&utm_medium=embedver1&utm_campaign=embed>`_
 
-    I did not create this case. I `altered Adafruit's design <https://learn.adafruit.com/pybadge-case/>`_. One of the screw posts was hitting the built in speaker and the case was not closing properly. I also added a piece of plastic over the display ribbon cable, to keep it better protected. You will need 4 x 3M screws to hold the case together.
+    I did not create this case. I Used Mr Coxall's design <https://learn.adafruit.com/pybadge-case/>`_.
 
 .. toctree::
   :maxdepth: 2
