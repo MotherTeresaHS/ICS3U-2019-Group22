@@ -179,7 +179,7 @@ def game_splash_scene():
 
 def main_menu_scene():
     # this function is the game scene
-    
+
     # variables
     increaser = 0
 
@@ -218,22 +218,22 @@ def main_menu_scene():
         increaser += 16
 
     trunk = []
-    
+
     trunkL = stage.Sprite(image_bank_2, 6, constants.SPRITE_SIZE * 4, 112)
     trunk.append(trunkL)
-    
+
     trunkR = stage.Sprite(image_bank_2, 7, constants.SPRITE_SIZE * 5, 112)
     trunk.append(trunkR)
 
     trunkM = stage.Sprite(image_bank_2, 8, 72, 96)
     trunk.append(trunkM)
-    
+
     trunkM2 = stage.Sprite(image_bank_2, 8, 72, 80)
     trunk.append(trunkM2)
-    
+
     trunk_branchL = stage.Sprite(image_bank_2, 9, constants.SPRITE_SIZE * 4, 64)
     trunk.append(trunk_branchL)
-    
+
     trunk_branchR = stage.Sprite(image_bank_2, 10, constants.SPRITE_SIZE * 5, 64)
     trunk.append(trunk_branchR)
 
@@ -241,73 +241,73 @@ def main_menu_scene():
 
     foliageLBB = stage.Sprite(image_bank_2, 12, 60, 59)
     foliage.append(foliageLBB)
-    
+
     foliageRBB = stage.Sprite(image_bank_2, 11, 84, 59)
     foliage.append(foliageRBB)
 
     foliageLMB = stage.Sprite(image_bank_2, 13, constants.SPRITE_SIZE * 4, 50)
     foliage.append(foliageLMB)
-    
+
     foliageRMB = stage.Sprite(image_bank_2, 13, constants.SPRITE_SIZE * 5, 50)
     foliage.append(foliageRMB)
 
     foliageLLB = stage.Sprite(image_bank_2, 12, constants.SPRITE_SIZE * 3, 50)
     foliage.append(foliageLLB)
-    
+
     foliageRRB = stage.Sprite(image_bank_2, 11, constants.SPRITE_SIZE * 6, 50)
     foliage.append(foliageRRB)
-    
+
     foliageLMM = stage.Sprite(image_bank_2, 13, constants.SPRITE_SIZE * 4, 40)
     foliage.append(foliageLMM)
-    
+
     foliageRMM = stage.Sprite(image_bank_2, 13, constants.SPRITE_SIZE * 5, 40)
     foliage.append(foliageRMM)
-    
+
     foliageLLM = stage.Sprite(image_bank_2, 13, constants.SPRITE_SIZE * 3, 40)
     foliage.append(foliageLLM)
-    
+
     foliageRRM = stage.Sprite(image_bank_2, 13, constants.SPRITE_SIZE * 6, 40)
     foliage.append(foliageRRM)
-    
+
     foliageLLLM = stage.Sprite(image_bank_2, 12, 38, 40)
     foliage.append(foliageLLLM)
-    
+
     foliageRRRM = stage.Sprite(image_bank_2, 11, 104, 40)
     foliage.append(foliageRRRM)
-    
+
     foliageLLLT = stage.Sprite(image_bank_2, 15, 38, 26)
     foliage.append(foliageLLLT)
-    
+
     foliageRRRT = stage.Sprite(image_bank_2, 14, 104, 26)
     foliage.append(foliageRRRT)
-    
+
     foliageLLMT = stage.Sprite(image_bank_2, 13, 54, 26)
     foliage.append(foliageLLMT)
-    
+
     foliageRRMT = stage.Sprite(image_bank_2, 13, 88, 26)
     foliage.append(foliageRRMT)
-    
+
     foliageLMMT = stage.Sprite(image_bank_2, 13, 70, 26)
     foliage.append(foliageLMMT)
-    
+
     foliageRMMT = stage.Sprite(image_bank_2, 13, 72, 26)
     foliage.append(foliageRMMT)
-    
+
     foliageLLTT = stage.Sprite(image_bank_2, 15, 50, 14)
     foliage.append(foliageLLTT)
-    
+
     foliageRRTT = stage.Sprite(image_bank_2, 14, 91, 14)
     foliage.append(foliageRRTT)
-    
+
     foliageLMTT = stage.Sprite(image_bank_2, 13, 65, 14)
     foliage.append(foliageLMTT)
-    
+
     foliageRMTT = stage.Sprite(image_bank_2, 13, 75, 14)
     foliage.append(foliageRMTT)
-    
+
     foliage_deco_1 = stage.Sprite(image_bank_2, 12, 60, 20)
     foliage.insert(0, foliage_deco_1)
-    
+
     foliage_deco_2 = stage.Sprite(image_bank_2, 11, 80, 30)
     foliage.insert(1, foliage_deco_2)
 
@@ -366,7 +366,7 @@ def game_scene():
 
     # variables
     increaser = 0
-    
+
     chicken_speed = 1
 
     # buttons that you want to keep state information on
@@ -384,12 +384,15 @@ def game_scene():
     sound.mute(False)
 
     def show_egg():
-        # I know this is a function that is using variables outside of itself!
-        #   BUT this code is going to be used in 2 places :)
-        # make an alien show up on screen in the x-axis
         for egg_number in range(len(eggs)):
             if eggs[egg_number].x < 0: # meaning it is off the screen, so available to move on the screen
                 eggs[egg_number].move(random.randint(0 + constants.SPRITE_SIZE, constants.SCREEN_X - constants.SPRITE_SIZE), constants.OFF_TOP_SCREEN)
+                break
+        
+    def show_bomb():
+        for bomb_number in range(len(bombs)):
+            if bombs[bomb_number].x < 0: # meaning it is off the screen, so available to move on the screen
+                bombs[bomb_number].move(random.randint(0 + constants.SPRITE_SIZE, constants.SCREEN_X - constants.SPRITE_SIZE), constants.OFF_TOP_SCREEN)
                 break
 
     image_bank_2 = stage.Bank.from_bmp16("egg_collector_image_bank_test.bmp")
@@ -412,22 +415,22 @@ def game_scene():
         increaser += 16
 
     trunk = []
-    
+
     trunkL = stage.Sprite(image_bank_2, 6, constants.SPRITE_SIZE * 4, 112)
     trunk.append(trunkL)
-    
+
     trunkR = stage.Sprite(image_bank_2, 7, constants.SPRITE_SIZE * 5, 112)
     trunk.append(trunkR)
 
     trunkM = stage.Sprite(image_bank_2, 8, 72, 96)
     trunk.append(trunkM)
-    
+
     trunkM2 = stage.Sprite(image_bank_2, 8, 72, 80)
     trunk.append(trunkM2)
-    
+
     trunk_branchL = stage.Sprite(image_bank_2, 9, constants.SPRITE_SIZE * 4, 64)
     trunk.append(trunk_branchL)
-    
+
     trunk_branchR = stage.Sprite(image_bank_2, 10, constants.SPRITE_SIZE * 5, 64)
     trunk.append(trunk_branchR)
 
@@ -435,73 +438,73 @@ def game_scene():
 
     foliageLBB = stage.Sprite(image_bank_2, 12, 60, 59)
     foliage.append(foliageLBB)
-    
+
     foliageRBB = stage.Sprite(image_bank_2, 11, 84, 59)
     foliage.append(foliageRBB)
 
     foliageLMB = stage.Sprite(image_bank_2, 13, constants.SPRITE_SIZE * 4, 50)
     foliage.append(foliageLMB)
-    
+
     foliageRMB = stage.Sprite(image_bank_2, 13, constants.SPRITE_SIZE * 5, 50)
     foliage.append(foliageRMB)
 
     foliageLLB = stage.Sprite(image_bank_2, 12, constants.SPRITE_SIZE * 3, 50)
     foliage.append(foliageLLB)
-    
+
     foliageRRB = stage.Sprite(image_bank_2, 11, constants.SPRITE_SIZE * 6, 50)
     foliage.append(foliageRRB)
-    
+
     foliageLMM = stage.Sprite(image_bank_2, 13, constants.SPRITE_SIZE * 4, 40)
     foliage.append(foliageLMM)
-    
+
     foliageRMM = stage.Sprite(image_bank_2, 13, constants.SPRITE_SIZE * 5, 40)
     foliage.append(foliageRMM)
-    
+
     foliageLLM = stage.Sprite(image_bank_2, 13, constants.SPRITE_SIZE * 3, 40)
     foliage.append(foliageLLM)
-    
+
     foliageRRM = stage.Sprite(image_bank_2, 13, constants.SPRITE_SIZE * 6, 40)
     foliage.append(foliageRRM)
-    
+
     foliageLLLM = stage.Sprite(image_bank_2, 12, 38, 40)
     foliage.append(foliageLLLM)
-    
+
     foliageRRRM = stage.Sprite(image_bank_2, 11, 104, 40)
     foliage.append(foliageRRRM)
-    
+
     foliageLLLT = stage.Sprite(image_bank_2, 15, 38, 26)
     foliage.append(foliageLLLT)
-    
+
     foliageRRRT = stage.Sprite(image_bank_2, 14, 104, 26)
     foliage.append(foliageRRRT)
-    
+
     foliageLLMT = stage.Sprite(image_bank_2, 13, 54, 26)
     foliage.append(foliageLLMT)
-    
+
     foliageRRMT = stage.Sprite(image_bank_2, 13, 88, 26)
     foliage.append(foliageRRMT)
-    
+
     foliageLMMT = stage.Sprite(image_bank_2, 13, 70, 26)
     foliage.append(foliageLMMT)
-    
+
     foliageRMMT = stage.Sprite(image_bank_2, 13, 72, 26)
     foliage.append(foliageRMMT)
-    
+
     foliageLLTT = stage.Sprite(image_bank_2, 15, 50, 14)
     foliage.append(foliageLLTT)
-    
+
     foliageRRTT = stage.Sprite(image_bank_2, 14, 91, 14)
     foliage.append(foliageRRTT)
-    
+
     foliageLMTT = stage.Sprite(image_bank_2, 13, 65, 14)
     foliage.append(foliageLMTT)
-    
+
     foliageRMTT = stage.Sprite(image_bank_2, 13, 75, 14)
     foliage.append(foliageRMTT)
-    
+
     foliage_deco_1 = stage.Sprite(image_bank_2, 12, 60, 20)
     foliage.insert(0, foliage_deco_1)
-    
+
     foliage_deco_2 = stage.Sprite(image_bank_2, 11, 80, 30)
     foliage.insert(1, foliage_deco_2)
 
@@ -518,12 +521,20 @@ def game_scene():
 
     egg_count = 1
     show_egg()
+    
+    bombs = []
+    for bomb_number in range(constants.TOTAL_NUMBER_OF_BOMBS):
+        a_single_bomb = stage.Sprite(image_bank_2, 4 , constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
+        bombs.append(a_single_bomb)
+
+    bomb_count = 1
+    show_bomb()
 
     # create a stage for the background to show up on
     #   and set the frame rate to 60fps
     game = stage.Stage(ugame.display, 60)
     # set the background layer
-    game.layers = sprites + eggs + plants + trunk + foliage + [score_text] + [background]
+    game.layers = sprites + eggs + bombs + plants + trunk + foliage + [score_text] + [background]
     # render the background
     game.render_block()
 
@@ -574,6 +585,7 @@ def game_scene():
         if a_button == constants.button_state["button_up"]:
             chicken_speed = 2
 
+        # check if egg falls off the screen
         for egg_number in range(len(eggs)):
             if eggs[egg_number].x > 0: # meaning it is on the screen
                 eggs[egg_number].move(eggs[egg_number].x, eggs[egg_number].y + constants.EGG_SPEED)
@@ -592,9 +604,8 @@ def game_scene():
                     show_egg()
                     if score < 0:
                         game_over_scene(score)
-        
-        
-        
+
+
         # each frame check if any of the eggs are touching the chicken
         for egg_number in range(len(eggs)):
             if eggs[egg_number].x > 0:
@@ -618,6 +629,38 @@ def game_scene():
                     show_egg()
 
 
+        # check if bomb falls off the screen
+        for bomb_number in range(len(bombs)):
+            if bombs[bomb_number].x > 0: # meaning it is on the screen
+                bombs[bomb_number].move(bombs[bomb_number].x, bombs[bomb_number].y + constants.BOMB_SPEED)
+                if bombs[bomb_number].y > constants.SCREEN_Y:
+                    bombs[bomb_number].move(constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
+                    # this will freeze the screen for a split second, but we have no option
+                    game.render_block()
+                    # play sound effect
+                    sound.stop()
+                    sound.play(boom_sound)
+                    show_bomb()
+                    if score < 0:
+                        game_over_scene(score)
+
+
+        # each frame check if any of the eggs are touching the chicken
+        for bomb_number in range(len(bombs)):
+            if bombs[bomb_number].x > 0:
+                # https://circuitpython-stage.readthedocs.io/en/latest/#stage.collide
+                # and https://stackoverflow.com/questions/306316/determine-if-two-rectangles-overlap-each-other
+                if stage.collide(bombs[bomb_number].x + 1, bombs[bomb_number].y,
+                                 bombs[bomb_number].x + 15, bombs[bomb_number].y + 15,
+                                 chicken.x, chicken.y,
+                                 chicken.x + 15, chicken.y + 15):
+                    bombs[bomb_number].move(constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
+                    game.render_block()
+                    # play sound effect
+                    sound.stop()
+                    sound.play(big_boom_sound)
+                    time.sleep(5.0)
+                    game_over_scene(score)
 
 
                     # alien hit the ship
@@ -629,7 +672,7 @@ def game_scene():
 
 
         # redraw sprite list
-        game.render_sprites(eggs + sprites)
+        game.render_sprites(eggs + bombs + sprites)
         game.tick()
 
 
