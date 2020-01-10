@@ -12,11 +12,13 @@ SCREEN_GRID_Y = 8
 SPRITE_SIZE = 16
 OFF_TOP_SCREEN = -1 * SPRITE_SIZE
 OFF_BOTTOM_SCREEN = SCREEN_Y + SPRITE_SIZE
+GRASS_POINT = 0
 TOTAL_NUMBER_OF_EGGS = 5
 TOTAL_NUMBER_OF_BOMBS = 5
 EGG_SPEED = 1
 OFF_SCREEN_X = -100
 OFF_SCREEN_Y = -100
+CHICKEN_SPEED = 2
 
 MT_GAME_STUDIO_PALETTE = (b'\xf8\x1f\x00\x00\xcey\x00\xff\xf8\x1f\xff\x19\xfc\xe0\xfd\xe0'
        b'\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff')
