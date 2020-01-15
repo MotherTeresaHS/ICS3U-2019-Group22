@@ -40,8 +40,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Space Aliens - CircuitPython Game'
-copyright = u'2020, Mr. Coxall'
+project = u'Egg Collector - CircuitPython Game'
+copyright = u'2020, Douglass Jeffrey'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -246,8 +246,8 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'CBPS', u'Space Aliens - CircuitPython Game',
-     [u'Mr. Coxall'], 1)
+    ('index', 'CBPS', u'Egg Collector - CircuitPython Game',
+     [u'Douglass Jeffrey'], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -260,8 +260,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'CBPS', u'Space Aliens - CircuitPython Game',
-   u'Mr. Coxall', 'Space Aliens', 'Space Aliens - CircuitPython Game',
+  ('index', 'CBPS', u'Egg Collector - CircuitPython Game',
+   u'Douglass Jeffrey', 'Egg Collector', 'Egg Collector - CircuitPython Game',
    'Miscellaneous'),
 ]
 
