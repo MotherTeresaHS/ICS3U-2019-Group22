@@ -296,15 +296,14 @@ I added many other things like increase in bomb and egg speed and some sounds to
 The final piece of logic determines if the eggs and bombs touch the chicken. What happens when they touch is a decision the creator must make but the main part of the logic remains the same nonetheless. To determine when the eggs and bombs touch the chicken, we will be defining the area of each sprite onscreen then using an if statement and stage.collide to determine if any of the 16X16 sprites overlap eachother at any given moment. Here is an example from my version of the game : 
 
 
-#!/usr/bin/env python3
-
-# Created by: Douglass Jeffrey
-# Created on: Dec 2019
-# This file is an example of how to to make eggs and bombs collide with 
-#   a chicken sprite
-
 .. code-block:: python
   :linenos:
+  #!/usr/bin/env python3
+
+  # Created by: Douglass Jeffrey
+  # Created on: Dec 2019
+  # This file is an example of how to to make eggs and bombs collide with 
+  #   a chicken sprite
 
   def game_scene():
 
@@ -419,6 +418,7 @@ The score system in egg collector relies upon catching the eggs in my version of
 
 .. code-block:: python
   :linenos:
+
   #!/usr/bin/env python3
 
   # Created by: Douglass Jeffrey
@@ -443,6 +443,7 @@ The score system in egg collector relies upon catching the eggs in my version of
   if __name__ == "__main__":
       game_scene()
 
+If you have made it this far then good job! there is only a bit of work left to do.
 
 .. toctree::
    :maxdepth: 1
