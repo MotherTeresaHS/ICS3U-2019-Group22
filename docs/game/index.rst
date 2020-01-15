@@ -42,8 +42,97 @@ In Egg Collector the main playable character is a chicken who moves to collect t
 
 I made sure to append it to a list and refresh it as well as the bomb and egg sprites 60 times per second inside of the game loop.
 
-Because the chicken has to save the falling eggs, I allow it to move left and right based on user input. I also chose to allow the chicken to move past one side of the screen and appear at the other but having something like that in your game is up to you. To move the chicken I had the user press the d-pad pertaining to the direction they wish to travel in. To do this I set up an if statement using the button states that were declared in our constants file. The if statement first checks if the chicken is touching an edge of the screen and moves it if it is not. If you dont want to include this piece of code, moving the chicken can be as simple as: if X button pressed: chickenR.move(chickenR.x + chicken_speed, chickenR.y). An example of my code for moving the chicken can be found here (I also added a speed button ) : https://github.com/Douglass-Jeffrey/ICS3U-2019-Group22/blob/master/readthedocs_examples/chicken_movement.py
+Because the chicken has to save the falling eggs, I allow it to move left and right based on user input. I also chose to allow the chicken to move past one side of the screen and appear at the other but having something like that in your game is up to you. To move the chicken I had the user press the d-pad pertaining to the direction they wish to travel in. To do this I set up an if statement using the button states that were declared in our constants file. The if statement first checks if the chicken is touching an edge of the screen and moves it if it is not. If you dont want to include this piece of code, moving the chicken can be as simple as: if X button pressed: chickenR.move(chickenR.x + chicken_speed, chickenR.y). An example of my code for moving the chicken can be found here (I also added a speed button ) : 
 
+.. code-block:: python
+  :linenos:
+    
+    #!/usr/bin/env python3
+
+    # Created by: Douglass Jeffrey
+    # Created on: Dec 2019
+    # This file is an example of how to create the chicken sprites
+
+
+    def game_scene():
+
+        # repeat forever, game loop
+        while True:
+            # get user input
+            keys = ugame.buttons.get_pressed()
+            # print(keys)
+
+            # sets button states
+            if keys & ugame.K_X != 0:  # A button
+                if a_button == constants.button_state["button_up"]:
+                    a_button = constants.button_state["button_just_pressed"]
+                elif a_button == constants.button_state["button_just_pressed"]:
+                    a_button = constants.button_state["button_still_pressed"]
+            else:
+                if a_button == constants.button_state["button_still_pressed"]:
+                    a_button = constants.button_state["button_released"]
+                else:
+                    a_button = constants.button_state["button_up"]
+
+            # if right D-Pad is pressed
+            if keys & ugame.K_RIGHT != 0:
+                # if chicken moves off right screen, move it back
+                if chickenR.x > constants.SCREEN_X - constants.SPRITE_SIZE:
+                    chickenR.x = 0
+                # else move chicken right
+                else:
+                    # if chickenL is onscreen and right d-pad is pressed
+                        # replace chickenL with chickenR
+                    if chickenL.x > 0:
+                        chickenR.move(chickenL.x, chickenL.y)
+                        chickenL.move(constants.OFF_SCREEN_X,
+                                      constants.OFF_SCREEN_Y)
+                        # once chicken is faced in direction of pressed d-pad
+                        #    move chicken that way
+                        chickenR.move(chickenR.x + chicken_speed, chickenR.y)
+                    else:
+                        # if chickenL isnt onscreen and right d-pad is
+                        #    pressed move chickenR
+                        chickenR.move(chickenR.x + chicken_speed, chickenR.y)
+
+            # if left D-Pad is pressed
+            if keys & ugame.K_LEFT != 0:
+                # if chicken moves off left screen, move it back
+                if chickenL.x < 0 and chickenL.y != constants.OFF_SCREEN_Y:
+                    chickenL.x = constants.SCREEN_X
+                # else move chicken left
+                else:
+                    # if chickenR is onscreen and left d-pad is pressed replace
+                    #    chickenL with chickenL
+                    if chickenR.x > 0:
+                        chickenL.move(chickenR.x, chickenR.y)
+                        chickenR.move(constants.OFF_SCREEN_X,
+                                      constants.OFF_SCREEN_Y)
+                        # once chicken is faced in direction of pressed d-pad
+                        #    move chicken that way
+                        chickenL.move(chickenL.x - chicken_speed, chickenL.y)
+                    else:
+                        # if chickenR isnt onscreen and left d-pad is
+                        #    pressed move chickenL
+                        chickenL.move(chickenL.x - chicken_speed, chickenL.y)
+
+
+            # if A Button (speed) is pressed
+            if a_button == constants.button_state["button_still_pressed"]:
+                chicken_speed += 1
+                # increase speed at which chicken moves
+                if chicken_speed > 3:
+                    chicken_speed = 3
+
+            # if A Button (speed) is not pressed
+            if a_button == constants.button_state["button_up"]:
+                chicken_speed = 2
+
+
+    if __name__ == "__main__":
+        game_scene()
+  
+  
 Eggs and Bombs
 
 In Egg Collector, both eggs and bombs rain down from the sky as the chicken (your player character) attempts to catch them by moving along the ground and positioning itself underneath them. In my version of the game, catching an egg awards the player with one point, and missing one deducts two. Missing a bomb awards no points but catching one ends the game. First and foremost, in order to make the eggs rain down from the sky, an extra function is required for each to reposition them above the screen once they finish moving across the screen: These functions found here https://github.com/Douglass-Jeffrey/ICS3U-2019-Group22/blob/master/readthedocs_examples/egg%2Bbomb_function_example.py should be placed inside of the game scene but before the game loops.
