@@ -15,7 +15,6 @@ import constants
 
 
 def blank_white_reset_scene():
-    # THIS IS COMPLETE
     # this function is the splash scene game loop
 
     # do house keeping to ensure everythng is setup
@@ -52,17 +51,19 @@ def blank_white_reset_scene():
 
         # redraw sprite list
 
+
 def mt_splash_scene():
-    # THIS IS COMPLETE
     # this function is the MT splash scene
 
     # an image bank for CircuitPython
     image_bank_1 = stage.Bank.from_bmp16("mt_game_studio.bmp")
 
     # sets the background to image 0 in the bank
-    background = stage.Grid(image_bank_1, constants.SCREEN_GRID_X, constants.SCREEN_GRID_Y)
+    background = stage.Grid(image_bank_1, constants.SCREEN_GRID_X,
+                            constants.SCREEN_GRID_Y)
 
-    # used this program to split the iamge into tile: https://ezgif.com/sprite-cutter/ezgif-5-818cdbcc3f66.png
+    # used this program to split the iamge into tile:
+    #    https://ezgif.com/sprite-cutter/ezgif-5-818cdbcc3f66.png
     background.tile(2, 2, 0)  # blank white
     background.tile(3, 2, 1)
     background.tile(4, 2, 2)
@@ -93,19 +94,22 @@ def mt_splash_scene():
 
     text = []
 
-    text1 = stage.Text(width=29, height=14, font=None, palette=constants.MT_GAME_STUDIO_PALETTE, buffer=None)
+    text1 = stage.Text(width=29, height=14, font=None,
+                       palette=constants.MT_GAME_STUDIO_PALETTE, buffer=None)
     text1.move(20, 10)
     text1.text("MT Game Studios")
     text.append(text1)
 
-    text2 = stage.Text(width=29, height=14, font=None, palette=constants.MT_GAME_STUDIO_PALETTE, buffer=None)
+    text2 = stage.Text(width=29, height=14, font=None,
+                       palette=constants.MT_GAME_STUDIO_PALETTE, buffer=None)
     text2.move(35, 110)
-    text2.text("PRESS START")
+    text2.text(":)")
     text.append(text2)
 
     # get sound ready
-    # follow this guide to convert your other sounds to something that will work
-    #    https://learn.adafruit.com/microcontroller-compatible-audio-file-conversion
+    # follow this guide to convert your other sounds to something that will
+    #    work https://learn.adafruit.com/microcontroller-compatible-audio-file
+    #       -conversion
     coin_sound = open("coin.wav", 'rb')
     sound = ugame.audio
     sound.stop()
@@ -133,25 +137,28 @@ def mt_splash_scene():
 
         # redraw sprite list
 
+
 def game_splash_scene():
-    # Done dont touch
     # this function is the game splash scene
 
     # an image bank for CircuitPython
     image_bank_2 = stage.Bank.from_bmp16("egg_collector_image_bank_test.bmp")
 
     # sets the background to image 0
-    background = stage.Grid(image_bank_2, constants.SCREEN_GRID_X, constants.SCREEN_GRID_Y)
+    background = stage.Grid(image_bank_2, constants.SCREEN_GRID_X,
+                            constants.SCREEN_GRID_Y)
 
     # displays text onscreen
     text = []
 
-    text1 = stage.Text(width=40, height=20, font=None, palette=constants.SCORE_PALETTE, buffer=None)
+    text1 = stage.Text(width=40, height=20, font=None,
+                       palette=constants.SCORE_PALETTE, buffer=None)
     text1.move(35, 10)
     text1.text("Produced By")
     text.append(text1)
 
-    text2 = stage.Text(width=29, height=14, font=None, palette=constants.SCORE_PALETTE, buffer=None)
+    text2 = stage.Text(width=29, height=14, font=None,
+                       palette=constants.SCORE_PALETTE, buffer=None)
     text2.move(19, 110)
     text2.text("Douglass Jeffrey")
     text.append(text2)
@@ -175,6 +182,7 @@ def game_splash_scene():
         time.sleep(1.0)
         main_menu_scene()
 
+
 def main_menu_scene():
     # this function is the game scene
 
@@ -185,35 +193,42 @@ def main_menu_scene():
     def show_egg():
         # make an egg show up on screen in the x-axis
         for egg_number in range(len(eggs)):
-            if eggs[egg_number].x < 0: # meaning it is off the screen, so available to move on the screen
-                eggs[egg_number].move(random.randint(0 + constants.SPRITE_SIZE, constants.SCREEN_X - constants.SPRITE_SIZE), constants.OFF_TOP_SCREEN)
+            if eggs[egg_number].x < 0:  # meaning it is off the screen
+                eggs[egg_number].move(random.randint(0 + constants.SPRITE_SIZE,
+                                                     constants.SCREEN_X -
+                                                     constants.SPRITE_SIZE),
+                                      constants.OFF_TOP_SCREEN)
                 break
 
     # sets the image bank to my bank used in the egg collector game
     image_bank_2 = stage.Bank.from_bmp16("egg_collector_image_bank_test.bmp")
 
     # sets the background to image 0 in the bank
-    background = stage.Grid(image_bank_2, constants.SCREEN_GRID_X, constants.SCREEN_GRID_Y)
+    background = stage.Grid(image_bank_2, constants.SCREEN_GRID_X,
+                            constants.SCREEN_GRID_Y)
 
     # displays text onscreen
     text = []
 
-    text1 = stage.Text(width=40, height=20, font=None, palette=constants.SCORE_PALETTE, buffer=None)
+    text1 = stage.Text(width=40, height=20, font=None,
+                       palette=constants.SCORE_PALETTE, buffer=None)
     text1.move(35, 10)
     text1.text("EGG COLLECTOR")
     text.append(text1)
 
-    text2 = stage.Text(width=29, height=40, font=None, palette=constants.SCORE_PALETTE, buffer=None)
+    text2 = stage.Text(width=29, height=40, font=None,
+                       palette=constants.SCORE_PALETTE, buffer=None)
     text2.move(1, 100)
     text2.text("PRESS START TO BEGIN")
     text.append(text2)
 
     # list to store the generated plants
     plants = []
-    
-    # procedurally generates the grass at the botom of the screen
+
+    # procedurally generates the grass at the bottom of the screen
     for grass_number in range(0, 10):
-        a_single_grass = stage.Sprite(image_bank_2, 5 , constants.GRASS_POINT + increaser , 128 - 16)
+        a_single_grass = stage.Sprite(image_bank_2, 5, constants.GRASS_POINT
+                                      + increaser, 128 - 16)
         plants.append(a_single_grass)
         increaser += 16
 
@@ -232,14 +247,16 @@ def main_menu_scene():
     trunkM2 = stage.Sprite(image_bank_2, 8, 72, 80)
     trunk.append(trunkM2)
 
-    trunk_branchL = stage.Sprite(image_bank_2, 9, constants.SPRITE_SIZE * 4, 64)
+    trunk_branchL = stage.Sprite(image_bank_2, 9,
+                                 constants.SPRITE_SIZE * 4, 64)
     trunk.append(trunk_branchL)
 
-    trunk_branchR = stage.Sprite(image_bank_2, 10, constants.SPRITE_SIZE * 5, 64)
+    trunk_branchR = stage.Sprite(image_bank_2, 10,
+                                 constants.SPRITE_SIZE * 5, 64)
     trunk.append(trunk_branchR)
 
     # this is a list to store the tree foliage sprites
-        # each sprite makes up a different part of the screen
+    #   each sprite makes up a different part of the screen
     foliage = []
 
     foliageLBB = stage.Sprite(image_bank_2, 12, 60, 59)
@@ -318,13 +335,14 @@ def main_menu_scene():
     sprites = []
     # create a sprite
     # parameters (image bank, image # in bank, x, y)
-    chicken = stage.Sprite(image_bank_2, 1, 12, 8 )
+    chicken = stage.Sprite(image_bank_2, 1, 12, 8)
     sprites.insert(0, chicken)  # insert at top of sprite list
 
     # a list to store the falling egg sprites
     eggs = []
     for egg_number in range(constants.TOTAL_NUMBER_OF_EGGS):
-        a_single_egg = stage.Sprite(image_bank_2, 3 , constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
+        a_single_egg = stage.Sprite(image_bank_2, 3, constants.OFF_SCREEN_X,
+                                    constants.OFF_SCREEN_Y)
         eggs.append(a_single_egg)
 
     egg_count = 1
@@ -334,7 +352,8 @@ def main_menu_scene():
     #   and set the frame rate to 60fps
     game = stage.Stage(ugame.display, 60)
     # set the background layer
-    game.layers = sprites + eggs + text + plants + trunk + foliage + [background]
+    game.layers = (sprites + eggs + text + plants + trunk
+                   + foliage + [background])
     # render the background
     game.render_block()
 
@@ -343,22 +362,25 @@ def main_menu_scene():
         # get user input
         # update game logic
         keys = ugame.buttons.get_pressed()
-        #print(keys)
+        # print(keys)
 
         if keys & ugame.K_START != 0:  # Start button
             game_scene()
-            #break
+            # break
 
         for egg_number in range(len(eggs)):
-            if eggs[egg_number].x > 0: # meaning it is on the screen
-                eggs[egg_number].move(eggs[egg_number].x, eggs[egg_number].y + constants.EGG_SPEED)
+            if eggs[egg_number].x > 0:  # meaning it is on the screen
+                eggs[egg_number].move(eggs[egg_number].x, eggs[egg_number].y
+                                      + constants.EGG_SPEED)
                 if eggs[egg_number].y > constants.SCREEN_Y:
-                    eggs[egg_number].move(constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
-                    show_egg() # make it randomly show up at top again
+                    eggs[egg_number].move(constants.OFF_SCREEN_X,
+                                          constants.OFF_SCREEN_Y)
+                    show_egg()  # make it randomly show up at top again
 
         # redraw sprite list
         game.render_sprites(eggs)
         game.tick()
+
 
 def game_scene():
     # this function is the game scene
@@ -368,8 +390,9 @@ def game_scene():
 
     # variables
     increaser = 0
-
     chicken_speed = 1
+    egg_speed = 1
+    bomb_speed = 1
 
     # buttons that you want to keep state information on
     a_button = constants.button_state["button_up"]
@@ -388,24 +411,34 @@ def game_scene():
     # Function to make eggs reappear at the top of the screen
     def show_egg():
         for egg_number in range(len(eggs)):
-            if eggs[egg_number].x < 0: # meaning it is off the screen, so available to move on the screen
-                eggs[egg_number].move(random.randint(0 + constants.SPRITE_SIZE, constants.SCREEN_X - constants.SPRITE_SIZE), constants.OFF_TOP_SCREEN)
+            if eggs[egg_number].x < 0:  # meaning it is off the screen,
+                eggs[egg_number].move(random.randint(0 + constants.SPRITE_SIZE,
+                                                     constants.SCREEN_X -
+                                                     constants.SPRITE_SIZE),
+                                      constants.OFF_TOP_SCREEN)
                 break
 
     # Function to make bombs reappear at the top of the screen
     def show_bomb():
         for bomb_number in range(len(bombs)):
-            if bombs[bomb_number].x < 0: # meaning it is off the screen, so available to move on the screen
-                bombs[bomb_number].move(random.randint(0 + constants.SPRITE_SIZE, constants.SCREEN_X - constants.SPRITE_SIZE), constants.OFF_TOP_SCREEN - random.randint (0, 50))
+            if bombs[bomb_number].x < 0:  # meaning it is off the screen
+                bombs[bomb_number].move(random.randint
+                                        (0 + constants.SPRITE_SIZE,
+                                         constants.SCREEN_X -
+                                         constants.SPRITE_SIZE),
+                                        constants.OFF_TOP_SCREEN
+                                        - random.randint(0, 50))
                 break
 
     image_bank_2 = stage.Bank.from_bmp16("egg_collector_image_bank_test.bmp")
 
     # sets the background to image 0 in the bank
-    background = stage.Grid(image_bank_2, constants.SCREEN_GRID_X, constants.SCREEN_GRID_Y)
+    background = stage.Grid(image_bank_2, constants.SCREEN_GRID_X,
+                            constants.SCREEN_GRID_Y)
 
     # add text at top of screen for score
-    score_text = stage.Text(width=29, height=14, font=None, palette=constants.SCORE_PALETTE, buffer=None)
+    score_text = stage.Text(width=29, height=14, font=None,
+                            palette=constants.SCORE_PALETTE, buffer=None)
     score_text.clear()
     score_text.cursor(0, 0)
     score_text.move(1, 1)
@@ -415,10 +448,11 @@ def game_scene():
     plants = []
     # procedurally generating grass
     for grass_number in range(0, 10):
-        a_single_grass = stage.Sprite(image_bank_2, 5 , constants.GRASS_POINT + increaser , 128 - 16)
+        a_single_grass = stage.Sprite(image_bank_2, 5, constants.GRASS_POINT
+                                      + increaser, 128 - 16)
         plants.append(a_single_grass)
         increaser += 16
-    
+
     # list to hold all trunk sprites
     trunk = []
 
@@ -434,10 +468,12 @@ def game_scene():
     trunkM2 = stage.Sprite(image_bank_2, 8, 72, 80)
     trunk.append(trunkM2)
 
-    trunk_branchL = stage.Sprite(image_bank_2, 9, constants.SPRITE_SIZE * 4, 64)
+    trunk_branchL = stage.Sprite(image_bank_2, 9,
+                                 constants.SPRITE_SIZE * 4, 64)
     trunk.append(trunk_branchL)
 
-    trunk_branchR = stage.Sprite(image_bank_2, 10, constants.SPRITE_SIZE * 5, 64)
+    trunk_branchR = stage.Sprite(image_bank_2, 10,
+                                 constants.SPRITE_SIZE * 5, 64)
     trunk.append(trunk_branchR)
 
     # list to hold all leaf/foliage sprites
@@ -523,14 +559,15 @@ def game_scene():
     chickens.insert(0, chickenR)  # insert at top of sprite list
 
     # create left chicken sprite
-    chickenL = stage.Sprite(image_bank_2, 2, constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
+    chickenL = stage.Sprite(image_bank_2, 2, constants.OFF_SCREEN_X,
+                            constants.OFF_SCREEN_Y)
     chickens.append(chickenL)
 
-    # list to hold chicken sprites
     eggs = []
     # generates eggs to fall from the top of the screen
     for egg_number in range(constants.TOTAL_NUMBER_OF_EGGS):
-        a_single_egg = stage.Sprite(image_bank_2, 3 , constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
+        a_single_egg = stage.Sprite(image_bank_2, 3, constants.OFF_SCREEN_X,
+                                    constants.OFF_SCREEN_Y)
         eggs.append(a_single_egg)
 
     egg_count = 1
@@ -539,7 +576,8 @@ def game_scene():
     # generates bombs to fall from the top of the screen
     bombs = []
     for bomb_number in range(constants.TOTAL_NUMBER_OF_BOMBS):
-        a_single_bomb = stage.Sprite(image_bank_2, 4 , constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
+        a_single_bomb = stage.Sprite(image_bank_2, 4, constants.OFF_SCREEN_X,
+                                     constants.OFF_SCREEN_Y)
         bombs.append(a_single_bomb)
 
     bomb_count = 1
@@ -549,7 +587,8 @@ def game_scene():
     #   and set the frame rate to 60fps
     game = stage.Stage(ugame.display, 60)
     # sets which layers appear above the others
-    game.layers = chickens + eggs + bombs + plants + trunk + foliage + [score_text] + [background]
+    game.layers = (chickens + eggs + bombs + plants + trunk + foliage
+                   + [score_text] + [background])
     # render the background
     game.render_block()
 
@@ -557,7 +596,7 @@ def game_scene():
     while True:
         # get user input
         keys = ugame.buttons.get_pressed()
-        #print(keys)
+        # print(keys)
 
         # sets button states
         if keys & ugame.K_X != 0:  # A button
@@ -578,14 +617,18 @@ def game_scene():
                 chickenR.x = 0
             # else move chicken right
             else:
-                # if chickenL is onscreen and right d-pad is pressed replace chickenL with chickenR
+                # if chickenL is onscreen and right d-pad is pressed
+                    # replace chickenL with chickenR
                 if chickenL.x > 0:
                     chickenR.move(chickenL.x, chickenL.y)
-                    chickenL.move(constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
-                    # once chicken is faced in direction of pressed d-pad move chicken that way
+                    chickenL.move(constants.OFF_SCREEN_X,
+                                  constants.OFF_SCREEN_Y)
+                    # once chicken is faced in direction of pressed d-pad
+                    #    move chicken that way
                     chickenR.move(chickenR.x + chicken_speed, chickenR.y)
                 else:
-                    # if chickenL isnt onscreen and right d-pad is pressed move chickenR
+                    # if chickenL isnt onscreen and right d-pad is
+                    #    pressed move chickenR
                     chickenR.move(chickenR.x + chicken_speed, chickenR.y)
 
         # if left D-Pad is pressed
@@ -595,14 +638,18 @@ def game_scene():
                 chickenL.x = constants.SCREEN_X
             # else move chicken left
             else:
-                # if chickenR is onscreen and left d-pad is pressed replace chickenL with chickenL
+                # if chickenR is onscreen and left d-pad is pressed replace
+                #    chickenL with chickenL
                 if chickenR.x > 0:
                     chickenL.move(chickenR.x, chickenR.y)
-                    chickenR.move(constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
-                    # once chicken is faced in direction of pressed d-pad move chicken that way
+                    chickenR.move(constants.OFF_SCREEN_X,
+                                  constants.OFF_SCREEN_Y)
+                    # once chicken is faced in direction of pressed d-pad
+                    #    move chicken that way
                     chickenL.move(chickenL.x - chicken_speed, chickenL.y)
                 else:
-                    # if chickenR isnt onscreen and left d-pad is pressed move chickenL
+                    # if chickenR isnt onscreen and left d-pad is
+                    #    pressed move chickenL
                     chickenL.move(chickenL.x - chicken_speed, chickenL.y)
 
         # if A Button (speed) is pressed
@@ -616,18 +663,35 @@ def game_scene():
         if a_button == constants.button_state["button_up"]:
             chicken_speed = 2
 
+        # Egg and bomb speed increaser
+        if score > 20 and egg_speed == 1:
+            egg_speed += 1
+            bomb_speed += 1
+        elif score > 40 and egg_speed == 2:
+            egg_speed += 1
+            bomb_speed += 1
+        elif score > 60 and egg_speed == 3:
+            egg_speed += 1
+            bomb_speed += 1
+        elif score > 80 and egg_speed == 4:
+            egg_speed += 1
+            bomb_speed += 1
+
         # check if egg falls off the screen
         for egg_number in range(len(eggs)):
-            if eggs[egg_number].x > 0: # meaning it is on the screen
-                eggs[egg_number].move(eggs[egg_number].x, eggs[egg_number].y + constants.EGG_SPEED)
+            if eggs[egg_number].x > 0:  # meaning it is on the screen
+                eggs[egg_number].move(eggs[egg_number].x,
+                                      eggs[egg_number].y + egg_speed)
                 if eggs[egg_number].y > constants.SCREEN_Y:
-                    eggs[egg_number].move(constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
+                    eggs[egg_number].move(constants.OFF_SCREEN_X,
+                                          constants.OFF_SCREEN_Y)
                     score = score - 2
                     score_text.clear()
                     score_text.cursor(0, 0)
                     score_text.move(1, 1)
                     score_text.text("Score: {0}".format(score))
-                    # this will freeze the screen for a split second, but we have no option
+                    # this will freeze the screen for a split second,
+                    #    but we have no option
                     game.render_block()
                     # play sound effect
                     sound.stop()
@@ -636,23 +700,27 @@ def game_scene():
                     if score < 0:
                         game_over_scene(score)
 
-
         # each frame check if any of the eggs are touching ChickenR
         for egg_number in range(len(eggs)):
             if eggs[egg_number].x > 0 and chickenR.x > 0:
-                # https://circuitpython-stage.readthedocs.io/en/latest/#stage.collide
-                # and https://stackoverflow.com/questions/306316/determine-if-two-rectangles-overlap-each-other
+                # https://circuitpython-stage.readthedocs.io/en/latest/#
+                #    stage.collide
+                # and https://stackoverflow.com/questions/306316/determine
+                #   -if-two-rectangles-overlap-each-other
                 if stage.collide(eggs[egg_number].x + 1, eggs[egg_number].y,
-                                 eggs[egg_number].x + 15, eggs[egg_number].y + 15,
+                                 eggs[egg_number].x + 15,
+                                 eggs[egg_number].y + 15,
                                  chickenR.x, chickenR.y,
                                  chickenR.x + 15, chickenR.y + 15):
-                    eggs[egg_number].move(constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
+                    eggs[egg_number].move(constants.OFF_SCREEN_X,
+                                          constants.OFF_SCREEN_Y)
                     score += 1
                     score_text.clear()
                     score_text.cursor(0, 0)
                     score_text.move(1, 1)
                     score_text.text("Score: {0}".format(score))
-                    # this will freeze the screen for a split second, but we have no option
+                    # this will freeze the screen for a split second,
+                    #    but we have no option
                     game.render_block()
                     # play sound effect
                     sound.stop()
@@ -662,19 +730,22 @@ def game_scene():
                     egg_count = egg_count + 1
 
             # each frame check if any of the eggs are touching ChickenL
-            if eggs[egg_number].x > 0 and chickenL.x> 0:
+            if eggs[egg_number].x > 0 and chickenL.x > 0:
                 # check if any of the eggs are touching ChickenR
                 if stage.collide(eggs[egg_number].x + 1, eggs[egg_number].y,
-                                 eggs[egg_number].x + 15, eggs[egg_number].y + 15,
+                                 eggs[egg_number].x + 15,
+                                 eggs[egg_number].y + 15,
                                  chickenL.x, chickenL.y,
                                  chickenL.x + 15, chickenL.y + 15):
-                    eggs[egg_number].move(constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
+                    eggs[egg_number].move(constants.OFF_SCREEN_X,
+                                          constants.OFF_SCREEN_Y)
                     score += 1
                     score_text.clear()
                     score_text.cursor(0, 0)
                     score_text.move(1, 1)
                     score_text.text("Score: {0}".format(score))
-                    # this will freeze the screen for a split second, but we have no option
+                    # this will freeze the screen for a split second, but we
+                    #    have no option
                     game.render_block()
                     # play sound effect
                     sound.stop()
@@ -683,14 +754,16 @@ def game_scene():
                     show_egg()
                     egg_count = egg_count + 1
 
-
         # check if bomb falls off the screen
         for bomb_number in range(len(bombs)):
-            if bombs[bomb_number].x > 0: # meaning it is on the screen
-                bombs[bomb_number].move(bombs[bomb_number].x, bombs[bomb_number].y + constants.BOMB_SPEED)
+            if bombs[bomb_number].x > 0:  # meaning it is on the screen
+                bombs[bomb_number].move(bombs[bomb_number].x,
+                                        bombs[bomb_number].y + bomb_speed)
                 if bombs[bomb_number].y > constants.SCREEN_Y:
-                    bombs[bomb_number].move(constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
-                    # this will freeze the screen for a split second, but we have no option
+                    bombs[bomb_number].move(constants.OFF_SCREEN_X,
+                                            constants.OFF_SCREEN_Y)
+                    # this will freeze the screen for a split second,
+                    #    but we have no option
                     game.render_block()
                     # play sound effect
                     sound.stop()
@@ -699,17 +772,21 @@ def game_scene():
                     show_bomb()
                     bomb_count = bomb_count + 1
 
-
         # each frame check if any of the bombs are touching the chickenR
         for bomb_number in range(len(bombs)):
-            if bombs[bomb_number].x > 0 and chickenR.x> 0:
-                # https://circuitpython-stage.readthedocs.io/en/latest/#stage.collide
-                # and https://stackoverflow.com/questions/306316/determine-if-two-rectangles-overlap-each-other
-                if stage.collide(bombs[bomb_number].x + 1, bombs[bomb_number].y,
-                                 bombs[bomb_number].x + 15, bombs[bomb_number].y + 15,
+            if bombs[bomb_number].x > 0 and chickenR.x > 0:
+                # https://circuitpython-stage.readthedocs.io/en/latest/#
+                #    stage.collide
+                # and https://stackoverflow.com/questions/306316/determine
+                #    -if-two-rectangles-overlap-each-other
+                if stage.collide(bombs[bomb_number].x + 1,
+                                 bombs[bomb_number].y,
+                                 bombs[bomb_number].x + 15,
+                                 bombs[bomb_number].y + 15,
                                  chickenR.x, chickenR.y,
                                  chickenR.x + 15, chickenR.y + 15):
-                    bombs[bomb_number].move(constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
+                    bombs[bomb_number].move(constants.OFF_SCREEN_X,
+                                            constants.OFF_SCREEN_Y)
                     game.render_block()
                     # play sound effect
                     sound.stop()
@@ -718,21 +795,25 @@ def game_scene():
                     game_over_scene(score)
 
             # each frame check if any of the bombs are touching the chickenL
-            if bombs[bomb_number].x > 0 and chickenL.x> 0:
-                # https://circuitpython-stage.readthedocs.io/en/latest/#stage.collide
-                # and https://stackoverflow.com/questions/306316/determine-if-two-rectangles-overlap-each-other
-                if stage.collide(bombs[bomb_number].x + 1, bombs[bomb_number].y,
-                                 bombs[bomb_number].x + 15, bombs[bomb_number].y + 15,
+            if bombs[bomb_number].x > 0 and chickenL.x > 0:
+                # https://circuitpython-stage.readthedocs.io/en/latest/#
+                #    stage.collide
+                # and https://stackoverflow.com/questions/306316/determine
+                #    -if-two-rectangles-overlap-each-other
+                if stage.collide(bombs[bomb_number].x + 1,
+                                 bombs[bomb_number].y,
+                                 bombs[bomb_number].x + 15,
+                                 bombs[bomb_number].y + 15,
                                  chickenL.x, chickenL.y,
                                  chickenL.x + 15, chickenL.y + 15):
-                    bombs[bomb_number].move(constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
+                    bombs[bomb_number].move(constants.OFF_SCREEN_X,
+                                            constants.OFF_SCREEN_Y)
                     game.render_block()
                     # play sound effect
                     sound.stop()
                     sound.play(big_boom_sound)
                     time.sleep(5.0)
                     game_over_scene(score)
-
 
         # redraw sprite list
         game.render_sprites(eggs + bombs + chickens)
@@ -745,22 +826,26 @@ def game_over_scene(score):
     image_bank_2 = stage.Bank.from_bmp16("egg_collector_image_bank_test.bmp")
 
     # sets the background to image 0 in the bank
-    background = stage.Grid(image_bank_2, constants.SCREEN_GRID_X, constants.SCREEN_GRID_Y)
+    background = stage.Grid(image_bank_2, constants.SCREEN_GRID_X,
+                            constants.SCREEN_GRID_Y)
 
-    # a list to hold text
+    # a list to hold game over text
     text = []
 
-    text0 = stage.Text(width=29, height=14, font=None, palette=constants.SCORE_PALETTE, buffer=None)
+    text0 = stage.Text(width=29, height=14, font=None,
+                       palette=constants.SCORE_PALETTE, buffer=None)
     text0.move(22, 20)
     text0.text("Final Score: {:0>2d}".format(score))
     text.append(text0)
 
-    text1 = stage.Text(width=29, height=14, font=None, palette=constants.SCORE_PALETTE, buffer=None)
+    text1 = stage.Text(width=29, height=14, font=None,
+                       palette=constants.SCORE_PALETTE, buffer=None)
     text1.move(43, 60)
     text1.text("GAME OVER")
     text.append(text1)
 
-    text2 = stage.Text(width=29, height=14, font=None, palette=constants.SCORE_PALETTE, buffer=None)
+    text2 = stage.Text(width=29, height=14, font=None,
+                       palette=constants.SCORE_PALETTE, buffer=None)
     text2.move(32, 110)
     text2.text("PRESS SELECT")
     text.append(text2)
@@ -780,11 +865,12 @@ def game_over_scene(score):
 
         # update game logic
         keys = ugame.buttons.get_pressed()
-        #print(keys)
+        # print(keys)
 
         if keys & ugame.K_SELECT != 0:  # Start button
             keys = 0
             main_menu_scene()
+
 
 if __name__ == "__main__":
     blank_white_reset_scene()
