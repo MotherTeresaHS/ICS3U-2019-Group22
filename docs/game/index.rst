@@ -8,7 +8,39 @@ This section contains the logic you will need to create your version of the Egg 
 
 Chicken(s)
 
-In Egg Collector the main playable character is a chicken who moves to collect the egg and avoid the bombs descending the screen. The sprite list I made contains a left facing chicken and a right one, and if you wish to make your chicken sprite turn one must swap the chickens every movement and run checks on both of them while they are on screen to determine if a bomb or egg touches either. So in order to make the chickens we must first generate sprites sprite in the game scene outside of the game loop. Always remember to render the layers and set which appear above the others in your game scene with your background always at the back. I set my chicken sprites as the foremost layer at the end of the scene outside of the game loop and created it like this : https://github.com/Douglass-Jeffrey/ICS3U-2019-Group22/blob/master/readthedocs_examples/chicken_creation_example.py . I made sure to append it to a list and refresh it as well as the bomb and egg sprites 60 times per second inside of the game loop.
+In Egg Collector the main playable character is a chicken who moves to collect the egg and avoid the bombs descending the screen. The sprite list I made contains a left facing chicken and a right one, and if you wish to make your chicken sprite turn one must swap the chickens every movement and run checks on both of them while they are on screen to determine if a bomb or egg touches either. So in order to make the chickens we must first generate sprites sprite in the game scene outside of the game loop. Always remember to render the layers and set which appear above the others in your game scene with your background always at the back. I set my chicken sprites as the foremost layer at the end of the scene outside of the game loop and created it like this :
+
+.. code-block:: python
+  :linenos:
+  
+   #!/usr/bin/env python3
+
+   # Created by: Douglass Jeffrey
+   # Created on: Dec 2019
+   # This file is an example of how to create the chicken sprites
+
+
+   def game_scene():
+
+   # list to hold chicken sprites
+      chickens = []
+
+      # create right chicken sprite
+      chickenR = stage.Sprite(image_bank_2, 1, 80, 128 - constants.SPRITE_SIZE)
+      chickens.insert(0, chickenR)  # insert at top of sprite list
+
+      # create left chicken sprite
+      chickenL = stage.Sprite(image_bank_2, 2, constants.OFF_SCREEN_X,
+                            constants.OFF_SCREEN_Y)
+      chickens.append(chickenL)
+
+   if __name__ == "__main__":
+      game_scene()
+  
+   
+
+
+I made sure to append it to a list and refresh it as well as the bomb and egg sprites 60 times per second inside of the game loop.
 
 Because the chicken has to save the falling eggs, I allow it to move left and right based on user input. I also chose to allow the chicken to move past one side of the screen and appear at the other but having something like that in your game is up to you. To move the chicken I had the user press the d-pad pertaining to the direction they wish to travel in. To do this I set up an if statement using the button states that were declared in our constants file. The if statement first checks if the chicken is touching an edge of the screen and moves it if it is not. If you dont want to include this piece of code, moving the chicken can be as simple as: if X button pressed: chickenR.move(chickenR.x + chicken_speed, chickenR.y). An example of my code for moving the chicken can be found here (I also added a speed button ) : https://github.com/Douglass-Jeffrey/ICS3U-2019-Group22/blob/master/readthedocs_examples/chicken_movement.py
 
