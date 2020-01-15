@@ -15,6 +15,7 @@ To create the tree trunk, I created the right and left bases facing eachother in
 
 Foliage
 
-To create the leaves on the trees I experimented withmany different sprites until i found something i thought looked decent. The trick I used was to not make the leaf sprites completely symmetrical.
+To create the leaves on the trees I experimented with many different sprites until i found something i thought looked decent. The trick I used was to not make the leaf sprites completely symmetrical.
 
-If you want to use my background instead of experimenting yourself, it can be found here: https://github.com/Douglass-Jeffrey/ICS3U-2019-Group22/blob/master/readthedocs_examples/background.py
+If you want to use my background instead of experimenting yourself, it can be found here: 
+
