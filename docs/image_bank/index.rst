@@ -15,7 +15,7 @@ For sound, the stage library can play back :file:`*.wav` files in PCM 16-bit Mon
 
 If you do not want to get into creating your own assets, other people have already made assets available to use. All the assets for this guide can be found in the GitHub repo here:
 
-- Egg Collector Assets Folder: <https://github.com/Douglass-Jeffrey/ICS3U-2019-Group22`_
+- Egg Collector Assets Folder: https://github.com/Douglass-Jeffrey/ICS3U-2019-Group22
 
 
 Please download the assets and place them on the PyBadge, in the root directory. Your previous "Hello, World!" program should restart and run again each time you load a new file onto the PyBadge, hopefully with no errors once more.

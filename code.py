@@ -103,7 +103,7 @@ def mt_splash_scene():
     text2 = stage.Text(width=29, height=14, font=None,
                        palette=constants.MT_GAME_STUDIO_PALETTE, buffer=None)
     text2.move(35, 110)
-    text2.text("PRESS START")
+    text2.text("Douglass Jeffrey")
     text.append(text2)
 
     # get sound ready
