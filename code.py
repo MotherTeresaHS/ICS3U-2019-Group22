@@ -100,12 +100,6 @@ def mt_splash_scene():
     text1.text("MT Game Studios")
     text.append(text1)
 
-    text2 = stage.Text(width=29, height=14, font=None,
-                       palette=constants.MT_GAME_STUDIO_PALETTE, buffer=None)
-    text2.move(35, 110)
-    text2.text(":)")
-    text.append(text2)
-
     # get sound ready
     # follow this guide to convert your other sounds to something that will
     #    work https://learn.adafruit.com/microcontroller-compatible-audio-file
